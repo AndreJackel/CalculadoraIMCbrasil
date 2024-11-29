@@ -1,5 +1,6 @@
 package com.comunidadedevspace.imc
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -10,26 +11,38 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Recuperar os componentes EditText
-           // Criar uma variavel e associar o  componente de UI<EditTet>
-        //Recuperar o Botao da tela
-
-        //colocar acao no botao
-        //recuperar o texto digitado no edt peso
-
+        val btnCalcular = findViewById<Button>(R.id.Btn_calcular)
         val edtPeso = findViewById<TextInputEditText>(R.id.edt_peso)
         val edtAltura = findViewById<TextInputEditText>(R.id.edt_altura)
 
-        val btnCalcular = findViewById<Button>(R.id.Btn_calcular)
+        btnCalcular.setOnClickListener {
 
+            val pesotStr = edtPeso.text.toString()
+            val alturatStr = edtAltura.text.toString()
 
-        btnCalcular.setOnClickListener{
-            val peso: Float = edtPeso.text.toString().toFloat()
-            val altura: Float = edtAltura.text.toString().toFloat()
+            if (pesotStr.isEmpty()) {
+                edtPeso.error = "Preencha o peso"
+                return@setOnClickListener
+            }
+
+            if (alturatStr.isEmpty()) {
+                edtAltura.error = "Preencha a altura"
+                return@setOnClickListener
+            }
+
+            val alturaStr = edtAltura.text.toString()
+            val pesoStr = edtPeso.text.toString()
+
+            val altura: Float = alturaStr.toFloat()
+            val peso: Float = pesoStr.toFloat()
+
+            val alturaFinal: Float = altura * altura
+            val result: Float = peso / alturaFinal
 
             val alturaQ2 = altura * altura
-            val resultado = peso/ alturaQ2
-            println("andre" + resultado)
+            val resultado = peso / alturaQ2
+            println("Andre acao do botao" + resultado)
+        }
         }
     }
 }
