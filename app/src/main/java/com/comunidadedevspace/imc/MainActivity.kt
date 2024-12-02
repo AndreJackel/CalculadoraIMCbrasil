@@ -43,6 +43,6 @@ class MainActivity : AppCompatActivity() {
             val resultado = peso / alturaQ2
             println("Andre acao do botao" + resultado)
         }
-        }
+
     }
 }
